@@ -8,5 +8,5 @@ public class SecretManagerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SecretManagerApplication.class, args);
-	}
+}
 }

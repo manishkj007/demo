@@ -30,7 +30,6 @@ public class GetSecretValue {
                 BasicAWSCredentials("AKIAVSRJ2FA2ZYT5AHUU", "w7OU7dvHi9nVuKtLlf2wafOM7MPsUigpXrdbUTka")));
 		clientBuilder.setEndpointConfiguration(config);
 		AWSSecretsManager client = clientBuilder.build();
-
 		String secret;
 		ByteBuffer binarySecretData;
 		GetSecretValueRequest getSecretValueRequest = new GetSecretValueRequest().withSecretId(secretName)
