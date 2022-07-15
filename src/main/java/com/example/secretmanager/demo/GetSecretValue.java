@@ -5,6 +5,8 @@ import java.nio.ByteBuffer;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.client.builder.AwsClientBuilder;
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.secretsmanager.AWSSecretsManager;
 import com.amazonaws.services.secretsmanager.AWSSecretsManagerClientBuilder;
 import com.amazonaws.services.secretsmanager.model.GetSecretValueRequest;
@@ -13,10 +15,10 @@ import com.amazonaws.services.secretsmanager.model.InvalidParameterException;
 import com.amazonaws.services.secretsmanager.model.InvalidRequestException;
 import com.amazonaws.services.secretsmanager.model.ResourceNotFoundException;
 
-public class GetSecretValue {
-	public static void main(String[] args) {
-		getSecret();
-	}
+public class GetSecretValue implements RequestHandler<Object, Object>{
+//	public static void main(String[] args) {
+//		getSecret();
+//	}
 
 	public static void getSecret() {
 
@@ -27,9 +29,10 @@ public class GetSecretValue {
 		AwsClientBuilder.EndpointConfiguration config = new AwsClientBuilder.EndpointConfiguration(endpoint, region);
 		AWSSecretsManagerClientBuilder clientBuilder = AWSSecretsManagerClientBuilder.standard();
 		clientBuilder.setCredentials(new AWSStaticCredentialsProvider(new
-                BasicAWSCredentials("AKIAVSRJ2FA2ZYT5AHUU", "w7OU7dvHi9nVuKtLlf2wafOM7MPsUigpXrdbUTka")));
+                BasicAWSCredentials("AKIAT54TSZZDEVE2OTVR", "mUqqEmZld5zT2NvH8St3tsHEUqndBcbo28iun8C7")));
 		clientBuilder.setEndpointConfiguration(config);
 		AWSSecretsManager client = clientBuilder.build();
+		
 		String secret;
 		ByteBuffer binarySecretData;
 		GetSecretValueRequest getSecretValueRequest = new GetSecretValueRequest().withSecretId(secretName)
@@ -60,6 +63,12 @@ public class GetSecretValue {
 			System.out.println(binarySecretData.toString());
 		}
 
+	}
+
+	public Object handleRequest(Object input, Context context) {
+		// TODO Auto-generated method stub
+		getSecret();
+		return null;
 	}
 
 }
